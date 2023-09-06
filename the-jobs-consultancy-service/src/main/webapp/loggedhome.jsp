@@ -36,7 +36,7 @@
 		          <a class="nav-link" href="appointments.jsp">Appointments</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="myprofile.jsp">Hi, <%= request.getParameter("username") %></a>
+		          <a class="nav-link" href="myprofile.jsp">My Profile</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" href="logout.jsp">Log out</a>
@@ -47,6 +47,7 @@
 		</nav>
 		<br>
 		</header>
+		<h4>Hello, <%= request.getParameter("username") %></h4>
 		<div class="home-body">
 			<main>
 	        <h3>Reach our consultants and get your valued service!</h3>

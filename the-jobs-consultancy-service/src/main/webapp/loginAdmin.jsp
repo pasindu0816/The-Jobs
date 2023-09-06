@@ -24,15 +24,15 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>  
                 
-                <input type="hidden" name="actiontype" value="login"/>  
+                <input type="hidden" name="actiontype" value="loginAdmin"/>  
             </div>
             <br>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.jsp">Register</a></p>
         <div class= "text">
+        <p>Not an Admin?</p>
         <p >Consultant Login >>> <a href="loginConsul.jsp">click here</a></p>
-        <p >Admin Login >>> <a href="loginAdmin.jsp">click here</a></p>
+        <p >User Login >>> <a href="login.jsp">click here</a></p>
         </div>
         
         

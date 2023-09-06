@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.codewithpasi.jobsconsultancy.dao.dbutils.DbDriverManager;
 import com.codewithpasi.jobsconsultancy.dao.dbutils.DbDriverManagerFactory;
+import com.codewithpasi.jobsconsultancy.model.Admin;
 import com.codewithpasi.jobsconsultancy.model.Appointment;
 import com.codewithpasi.jobsconsultancy.model.Consultant;
 import com.codewithpasi.jobsconsultancy.model.User;
@@ -60,6 +61,44 @@ public class UserManagerImpl implements UserManager{
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, user.getuserName());
 		ps.setString(2, user.getPassword());
+		
+		ResultSet resultSet = ps.executeQuery();
+		
+		boolean result = resultSet.next();
+		
+		ps.close();
+		connection.close();
+		return result;
+		
+	}
+	
+	public boolean loginConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
+		
+		Connection connection = getConnection();
+		
+		String query = "SELECT * FROM consultant WHERE username = ? AND password = ?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, consultant.getname());
+		ps.setString(2, consultant.getPassword());
+		
+		ResultSet resultSet = ps.executeQuery();
+		
+		boolean result = resultSet.next();
+		
+		ps.close();
+		connection.close();
+		return result;
+		
+	}
+	
+	public boolean loginAdmin(Admin admin) throws ClassNotFoundException, SQLException {
+		
+		Connection connection = getConnection();
+		
+		String query = "SELECT * FROM admin WHERE username = ? AND password = ?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, admin.getname());
+		ps.setString(2, admin.getPassword());
 		
 		ResultSet resultSet = ps.executeQuery();
 		
@@ -124,24 +163,7 @@ public class UserManagerImpl implements UserManager{
 		return consultantList;
 	}
 	
-		public boolean loginConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
 		
-		Connection connection = getConnection();
-		
-		String query = "SELECT * FROM consultants WHERE username = ? AND password = ?";
-		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setString(1, consultant.getname());
-		ps.setString(2, consultant.getPassword());
-		
-		ResultSet resultSet = ps.executeQuery();
-		
-		boolean result = resultSet.next();
-		
-		ps.close();
-		connection.close();
-		return result;
-		
-	}
 
 		@Override
 		public boolean addAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {

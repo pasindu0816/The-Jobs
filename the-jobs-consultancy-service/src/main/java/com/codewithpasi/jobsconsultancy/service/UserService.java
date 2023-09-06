@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.codewithpasi.jobconsultancy.dao.UserManager;
 import com.codewithpasi.jobconsultancy.dao.UserManagerImpl;
+import com.codewithpasi.jobsconsultancy.model.Admin;
 import com.codewithpasi.jobsconsultancy.model.Appointment;
 import com.codewithpasi.jobsconsultancy.model.Consultant;
 import com.codewithpasi.jobsconsultancy.model.User;
@@ -41,6 +42,13 @@ public class UserService {
 		return getUserManager().loginUser(user);
 	}
 	
+	public boolean loginConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
+		return getUserManager().loginConsultant(consultant);
+	}
+	public boolean loginAdmin(Admin admin) throws ClassNotFoundException, SQLException {
+		return getUserManager().loginAdmin(admin);
+	}
+	
 	public Consultant fetchSingleConsultant(int consultantID) throws ClassNotFoundException, SQLException {
 		return getUserManager().fetchSingleConsultant(consultantID);
 	}
@@ -52,6 +60,8 @@ public class UserService {
 	public boolean addAppointment(Appointment appointment) throws ClassNotFoundException, SQLException {
 		return getUserManager().addAppointment(appointment);
 	}
+
+	
 	
 
 }

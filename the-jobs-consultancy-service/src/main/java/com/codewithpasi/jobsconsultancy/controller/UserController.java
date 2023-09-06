@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.codewithpasi.jobsconsultancy.service.UserService;
+import com.codewithpasi.jobsconsultancy.model.Admin;
 import com.codewithpasi.jobsconsultancy.model.Appointment;
 import com.codewithpasi.jobsconsultancy.model.Consultant;
 import com.codewithpasi.jobsconsultancy.model.User;
@@ -53,6 +54,12 @@ public class UserController extends HttpServlet {
 		}
 		else if (actionType.equals("login")) {
 			loginUser(request, response);
+		}
+		else if (actionType.equals("loginAdmin")) {
+			loginAdmin(request, response);
+		}
+		else if (actionType.equals("loginConsul")) {
+			loginConsultant(request, response);
 		}
 		else if (actionType.equals("add")) {
 			addAppointment(request, response);
@@ -117,6 +124,62 @@ public class UserController extends HttpServlet {
 		
 		request.setAttribute("feedbackmessage", message);
 		RequestDispatcher rd = request.getRequestDispatcher("loggedhome.jsp");
+		rd.forward(request, response);  
+    	
+    	
+	}
+    
+    private void loginConsultant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	clearMessage();
+
+    	Consultant consultant = new Consultant();
+    	consultant.setname(request.getParameter("username"));
+    	consultant.setPassword(request.getParameter("password"));
+
+    	try {
+			if(getUserService().loginConsultant(consultant)) { 
+				
+				message = "Successfully Logged in!";
+			}
+			else {
+				message = "Failed to Log in!";
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = "Operation failed! " +e.getMessage();
+		}
+		
+		request.setAttribute("feedbackmessage", message);
+		RequestDispatcher rd = request.getRequestDispatcher("consulHome.jsp");
+		rd.forward(request, response);  
+    	
+    	
+	}
+    
+    private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	clearMessage();
+
+    	Admin admin = new Admin();
+    	admin.setname(request.getParameter("username"));
+    	admin.setPassword(request.getParameter("password"));
+
+    	try {
+			if(getUserService().loginAdmin(admin)) { 
+				
+				message = "Successfully Logged in!";
+			}
+			else {
+				message = "Failed to Log in!";
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = "Operation failed! " +e.getMessage();
+		}
+		
+		request.setAttribute("feedbackmessage", message);
+		RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
 		rd.forward(request, response);  
     	
     	
