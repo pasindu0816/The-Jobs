@@ -13,11 +13,7 @@ public interface UserManager {
 	public boolean registerUser(User user) throws SQLException, ClassNotFoundException;
 	
 	public boolean loginUser(User user) throws SQLException, ClassNotFoundException; 
-	
-	public boolean loginConsultant(Consultant consultant) throws SQLException, ClassNotFoundException;
-	
-	public boolean loginAdmin(Admin admin) throws SQLException, ClassNotFoundException;
-	
+			
 	public Consultant fetchSingleConsultant(int consultantID) throws SQLException, ClassNotFoundException;
 
 	List<Consultant> fetchAllConsultants() throws SQLException, ClassNotFoundException;

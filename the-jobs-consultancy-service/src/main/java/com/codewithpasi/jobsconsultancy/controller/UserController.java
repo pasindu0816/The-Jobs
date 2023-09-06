@@ -35,13 +35,17 @@ public class UserController extends HttpServlet {
 		
 		if(actionType.equals("single")) {
 			fetchSingleConsultant(request, response);
-		}
+		} 
 		else {
 			fetchAllConsultants(request, response);
 		}
-
-				
+		
+		
 	}
+
+
+
+	
 
 
 
@@ -55,12 +59,7 @@ public class UserController extends HttpServlet {
 		else if (actionType.equals("login")) {
 			loginUser(request, response);
 		}
-		else if (actionType.equals("loginAdmin")) {
-			loginAdmin(request, response);
-		}
-		else if (actionType.equals("loginConsul")) {
-			loginConsultant(request, response);
-		}
+
 		else if (actionType.equals("add")) {
 			addAppointment(request, response);
 		}	
@@ -129,89 +128,13 @@ public class UserController extends HttpServlet {
     	
 	}
     
-    private void loginConsultant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	clearMessage();
-
-    	Consultant consultant = new Consultant();
-    	consultant.setname(request.getParameter("username"));
-    	consultant.setPassword(request.getParameter("password"));
-
-    	try {
-			if(getUserService().loginConsultant(consultant)) { 
-				
-				message = "Successfully Logged in!";
-			}
-			else {
-				message = "Failed to Log in!";
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			
-			message = "Operation failed! " +e.getMessage();
-		}
+    
+    private void fetchSingleConsultant(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
 		
-		request.setAttribute("feedbackmessage", message);
-		RequestDispatcher rd = request.getRequestDispatcher("consulHome.jsp");
-		rd.forward(request, response);  
-    	
-    	
 	}
     
-    private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	clearMessage();
-
-    	Admin admin = new Admin();
-    	admin.setname(request.getParameter("username"));
-    	admin.setPassword(request.getParameter("password"));
-
-    	try {
-			if(getUserService().loginAdmin(admin)) { 
-				
-				message = "Successfully Logged in!";
-			}
-			else {
-				message = "Failed to Log in!";
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			
-			message = "Operation failed! " +e.getMessage();
-		}
-		
-		request.setAttribute("feedbackmessage", message);
-		RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
-		rd.forward(request, response);  
-    	
-    	
-	}
-    
-    	private void fetchSingleConsultant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		clearMessage();
-		
-		int consultantID = Integer.parseInt(request.getParameter("consultantID"));
-		
-		try {
-			Consultant consultant = getUserService().fetchSingleConsultant(consultantID);
-			if(consultant.getconsultantID() > 0) {
-				request.setAttribute("consultant", consultant);
-			}
-			else {
-				message = "No record Found!";
-			}
-		} 
-		catch (ClassNotFoundException | SQLException e) {
-			message = e.getMessage();
-		}
-		
-		request.setAttribute("feedbackmessage", message);
-		RequestDispatcher rd = request.getRequestDispatcher("consultants.jsp");
-		rd.forward(request, response);
-		
-    	}
-    	
-    
-    	private void fetchAllConsultants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void fetchAllConsultants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Consultant> consultantList = new ArrayList<Consultant>();
 		
@@ -234,7 +157,14 @@ public class UserController extends HttpServlet {
 		rd.forward(request, response);
 		
 	}
-    	
+	
+	private void clearMessage() {
+		
+		message = "";
+		
+	}
+
+    
     	private void addAppointment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		
     		clearMessage();
@@ -263,13 +193,6 @@ public class UserController extends HttpServlet {
     		rd.forward(request, response);
     		
     	}
-
-
-
-	private void clearMessage() {
-		
-		message = "";
-		
-	}
+    	
 
 }

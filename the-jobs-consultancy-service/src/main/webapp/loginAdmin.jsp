@@ -14,7 +14,7 @@
     <div class="container">
         <h2>Login</h2>
         <p>${feedbackmessage}</p>
-        <form action="userlogin" method="POST">
+        <form action="getadmin" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>

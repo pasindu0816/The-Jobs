@@ -2,10 +2,10 @@ package com.codewithpasi.jobsconsultancy.model;
 
 public class User {
 	
-	private int userID;
-    private String userName;
-    private String Password;
-    private String Email;
+	private int userid;
+    private String username;
+    private String password;
+    private String email;
     //private UserRole role;
 
 	public User() {
@@ -13,35 +13,35 @@ public class User {
 	}
 	
 	public int getUserID() {
-		return userID;
+		return userid;
 	}
 
 	public void setUserID(int userid) {
-		this.userID = userid;
+		this.userid = userid;
 	}
 
 	public String getuserName() {
-		return userName;
+		return username;
 	}
 
 	public void setuserName(String username) {
-		this.userName = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		this.Password = password;
+		this.password = password;
 	}
 	
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
-	public void setEmail(String Email) {
-		this.Email = Email;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 		

@@ -72,43 +72,6 @@ public class UserManagerImpl implements UserManager{
 		
 	}
 	
-	public boolean loginConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
-		
-		Connection connection = getConnection();
-		
-		String query = "SELECT * FROM consultant WHERE username = ? AND password = ?";
-		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setString(1, consultant.getname());
-		ps.setString(2, consultant.getPassword());
-		
-		ResultSet resultSet = ps.executeQuery();
-		
-		boolean result = resultSet.next();
-		
-		ps.close();
-		connection.close();
-		return result;
-		
-	}
-	
-	public boolean loginAdmin(Admin admin) throws ClassNotFoundException, SQLException {
-		
-		Connection connection = getConnection();
-		
-		String query = "SELECT * FROM admin WHERE username = ? AND password = ?";
-		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setString(1, admin.getname());
-		ps.setString(2, admin.getPassword());
-		
-		ResultSet resultSet = ps.executeQuery();
-		
-		boolean result = resultSet.next();
-		
-		ps.close();
-		connection.close();
-		return result;
-		
-	}
 	
 	@Override
 	public Consultant fetchSingleConsultant(int consultantID) throws SQLException, ClassNotFoundException {
@@ -184,7 +147,7 @@ public class UserManagerImpl implements UserManager{
 			connection.close();
 			return result;
 		}
-		
-		
+
+	
 
 }
