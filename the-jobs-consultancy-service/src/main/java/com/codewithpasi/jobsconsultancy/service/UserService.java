@@ -30,9 +30,6 @@ public class UserService {
 		return new UserManagerImpl();
 	}
 	
-	private UserManager getUserManagerDao() {
-		return new UserManagerImpl();
-	}
 	
 	public boolean registerUser(User user) throws ClassNotFoundException, SQLException {
 		return getUserManager().registerUser(user);
@@ -42,12 +39,6 @@ public class UserService {
 		return getUserManager().loginUser(user);
 	}
 	
-	public boolean loginConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
-		return getUserManager().loginConsultant(consultant);
-	}
-	public boolean loginAdmin(Admin admin) throws ClassNotFoundException, SQLException {
-		return getUserManager().loginAdmin(admin);
-	}
 	
 	public Consultant fetchSingleConsultant(int consultantID) throws ClassNotFoundException, SQLException {
 		return getUserManager().fetchSingleConsultant(consultantID);
@@ -59,6 +50,13 @@ public class UserService {
 	
 	public boolean addAppointment(Appointment appointment) throws ClassNotFoundException, SQLException {
 		return getUserManager().addAppointment(appointment);
+	}
+
+
+
+	public Appointment fetchSingleAppointment(int appointmentID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
