@@ -41,7 +41,7 @@
 		</nav>
 		<br>
 		</header>		
-		<h3>All Consultants</h3>
+		<h3>All Appointments</h3>
 		<p style='color:magenta'> ${message} </p>
 		<br>
 		<table class="table" >
